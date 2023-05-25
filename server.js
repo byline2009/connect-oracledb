@@ -16,7 +16,7 @@ app.get("/nhan-vien-nghi-viec", (req, res) => {
       const result = await connection.execute(
         "SELECT * FROM sale_owner.NHAN_VIEN_NGHI_VIEC"
       );
-      return result;
+      return result.rows;
     } catch (error) {
       console.log(error);
     }
