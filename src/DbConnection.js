@@ -45,6 +45,7 @@ var getConnected = function (sql, params, callback) {
           //console.log(result.metaData); // [ { name: 'DEPARTMENT_ID' }, { name: 'DEPARTMENT_NAME' } ]
           //console.log(result.rows);     // [ [ 180, 'Construction' ] ]
           //module.exports.rows  = result.rows;
+          console.log("result", result);
           rows = result.rows;
           doRelease(connection);
           callback(rows);
