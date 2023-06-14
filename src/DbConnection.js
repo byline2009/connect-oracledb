@@ -54,6 +54,7 @@ var getConnected = function (sql, params, callback) {
     }
   );
 };
+
 function doRelease(connection) {
   connection.close(function (err) {
     if (err) {
