@@ -16,7 +16,7 @@ class EmployeeOffController {
     } else {
       DbConnection.getConnected(
         "SELECT * FROM sale_owner.NHAN_VIEN_NGHI_VIEC offset 0 rows fetch next 5 rows only",
-
+        {},
         function (data) {
           // console.log("data", data);
           res.send(data);
