@@ -2,6 +2,7 @@ const DbConnection = require("../../DbConnection");
 
 class EmployeeOffController {
   index(req, res) {
+    // Define the home page route
     const skip = req.query.skip;
     const limit = req.query.limit;
     let total = 0;
