@@ -12,10 +12,10 @@ class ThaySim4GController {
     if (skip && limit && month && year) {
       const monthFix = month < 10 ? "0" + month : month;
       const selectMonthYear = "01/" + monthFix + "/" + year;
-      const query = `SELECT * FROM sale_owner.CP_THAYSIM4G2 WHERE THANG_TT = TO_DATE(:selectMonthYear,'dd/mm/rrrr') 
+      const query = `SELECT * FROM sale_owner.CP_THAYSIM4G WHERE THANG_TT = TO_DATE(:selectMonthYear,'dd/mm/rrrr') 
             AND ISSUE_DATETIME >= TO_DATE(:selectMonthYear,'dd/mm/rrrr')
              AND DAT_DK = 'DU DK' AND shop_type IN ( :type) offset :offsetbv rows fetch next :nrowsbv rows only`;
-      const queryCount = `SELECT COUNT(*) FROM sale_owner.CP_THAYSIM4G2 WHERE THANG_TT = TO_DATE(:selectMonthYear,'dd/mm/rrrr') 
+      const queryCount = `SELECT COUNT(*) FROM sale_owner.CP_THAYSIM4G WHERE THANG_TT = TO_DATE(:selectMonthYear,'dd/mm/rrrr') 
             AND ISSUE_DATETIME >= TO_DATE(:selectMonthYear,'dd/mm/rrrr')
              AND DAT_DK = 'DU DK' AND shop_type IN ( :type) `;
       DbConnection.getConnected(
