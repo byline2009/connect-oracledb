@@ -3,6 +3,9 @@ const DbConnection = require("../../DbConnection");
 class ThaySim4GController {
   index(req, res) {
     // Define the home page route
+    if ((req.query.type = "Dai ly")) {
+      console.log("req.query.type", req.query);
+    }
     const skip = req.query.skip;
     const limit = req.query.limit;
     const type = req.query.type;
@@ -21,19 +24,17 @@ class ThaySim4GController {
       DbConnection.getConnected(
         queryCount,
         {
-          type: type.toUpperCase(),
+          type: type,
           selectMonthYear: selectMonthYear,
         },
         function (result) {
-          console.log("result[0][0]", result[0][0]);
           total = result[0][0];
-
           DbConnection.getConnected(
             query,
             {
               nrowsbv: limit,
               offsetbv: skip,
-              type: type.toUpperCase(),
+              type: type,
               selectMonthYear: selectMonthYear,
             },
             function (data) {
@@ -48,7 +49,7 @@ class ThaySim4GController {
       );
     } else {
       DbConnection.getConnected(
-        "SELECT * FROM sale_owner.CP_THAYSIM4G2 offset 0 rows fetch next 5 rows only",
+        "SELECT * FROM sale_owner.CP_THAYSIM4G offset 0 rows fetch next 5 rows only",
         {},
         function (data) {
           res.send({ data: data, totalCount: total });
