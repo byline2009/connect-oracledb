@@ -11,7 +11,6 @@ class EmployeeOffController {
       "SELECT count(*) FROM sale_owner.NHAN_VIEN_NGHI_VIEC",
       {},
       function (result) {
-        console.log("result[0][0]", result[0][0]);
         total = result[0][0];
         if (skip && limit) {
           DbConnection.getConnected(
@@ -21,7 +20,7 @@ class EmployeeOffController {
               if (data) {
                 data.map((item, index) => {});
               }
-              console.log("data", data);
+              console.log("data", JSON.stringify(data));
               res.send({ data: data, totalCount: total });
             }
           );
