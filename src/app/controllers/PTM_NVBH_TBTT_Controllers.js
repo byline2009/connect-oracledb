@@ -11,7 +11,7 @@ class PTM_NVBH_NVBH_TBTT_Controller {
       const monthFix = month < 10 ? "0" + month : month;
       const selectMonthYear = "01/" + monthFix + "/" + year;
 
-      const query = `SELECT b.tinh,aa.* FROM TH_CP_PTM_TBTT_CHECK_FN_T0523 aa
+      const query = `SELECT b.tinh,aa.* FROM TH_CP_PTM_TBTT_CHECK_copy aa
                     left join (
                     select   tinh, shop_code from  sale_owner.shop_cty7
                     union all
@@ -20,7 +20,7 @@ class PTM_NVBH_NVBH_TBTT_Controller {
                     WHERE aa.pay_month = TO_DATE(:selectMonthYear,'dd/mm/rrrr')
                     AND aa.emp_code IN (SELECT STAFF_CODE FROM STAFF_SALARY_MONTHLY
                     WHERE MONTH =  TO_DATE(:selectMonthYear,'dd/mm/rrrr') AND STAFF_CODE LIKE '7MBP%' AND STATUS = 1) offset :offsetbv rows fetch next :nrowsbv rows only`;
-      const queryCount = `SELECT count(*) FROM TH_CP_PTM_TBTT_CHECK_FN_T0523 aa
+      const queryCount = `SELECT count(*) FROM TH_CP_PTM_TBTT_CHECK_copy aa
                     left join (
                     select   tinh, shop_code from  sale_owner.shop_cty7
                     union all
