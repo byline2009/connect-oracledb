@@ -11,14 +11,22 @@ class DB01_Controller {
     var d = new Date();
     const plainDate = moment(d.setDate(d.getDate() - 5)).format("DD/MM/YYYY");
     console.log("plainDate", plainDate);
+    // DbConnection.getConnected(
+    //   `select count(*) from (
+    //    select * from db01_owner.tb_ptm_tt a where a.file_date >= to_date(:selectMonthYear,'dd/mm/rrrr')
+    //    and a.file_date < to_date(:plainDate,'dd/mm/rrrr'))`,
+    //   { selectMonthYear: selectMonthYear, plainDate: plainDate },
+    //   function (result) {
+    //     console.log("result", result);
+    //     res.send({ data: result[0][0], totalCount: result[0][0] });
+    //   }
+    // );
     DbConnection.getConnected(
-      `select count(*) from (
-       select * from db01_owner.tb_ptm_tt a where a.file_date >= to_date(:selectMonthYear,'dd/mm/rrrr')
-       and a.file_date < to_date(:plainDate,'dd/mm/rrrr'))`,
-      { selectMonthYear: selectMonthYear, plainDate: plainDate },
+      "select sl from local_tbtt_ptm_hourly  where rownum = 1 order by time",
+      {},
       function (result) {
         console.log("result", result);
-        res.send({ data: result[0][0], totalCount: result[0][0] });
+        res.send({ data: result, totalCount: result });
       }
     );
   }
