@@ -11,11 +11,13 @@ class BHTT_Controller {
     var d = new Date();
     const plainDate = moment(d.setDate(d.getDate() - 5)).format("DD/MM/YYYY");
     DbConnection.getConnected(
-      `select count(*) from (
-        select  distinct isdn  from   sale_owner.v_VW_COMM_COMMISSION_CT7 where PAY_MONTH = to_date(:selectMonthYear,'dd/mm/rrrr') 
-        and STA_DATETIME >= to_date(:selectMonthYear,'dd/mm/rrrr')  and STA_DATETIME < to_date(:plainDate,'dd/mm/rrrr')  
-        and incentive_id ='104')`,
-      { selectMonthYear: selectMonthYear, plainDate: plainDate },
+      // `select count(*) from (
+      //   select  distinct isdn  from   sale_owner.v_VW_COMM_COMMISSION_CT7 where PAY_MONTH = to_date(:selectMonthYear,'dd/mm/rrrr')
+      //   and STA_DATETIME >= to_date(:selectMonthYear,'dd/mm/rrrr')  and STA_DATETIME < to_date(:plainDate,'dd/mm/rrrr')
+      //   and incentive_id ='104')`,
+      // { selectMonthYear: selectMonthYear, plainDate: plainDate },
+      "select sl from local_tbtt_ptm_hourly  where rownum = 1 order by time desc",
+      {},
       function (result) {
         console.log("result", result);
 

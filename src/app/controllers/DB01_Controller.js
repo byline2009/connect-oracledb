@@ -22,7 +22,7 @@ class DB01_Controller {
     //   }
     // );
     DbConnection.getConnected(
-      "select sl from local_tbtt_ptm_hourly  where rownum = 1 order by time",
+      "select sl from local_tbtt_ptm_hourly  where rownum = 1 order by time desc",
       {},
       function (result) {
         console.log("result", result);
