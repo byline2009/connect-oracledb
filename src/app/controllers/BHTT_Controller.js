@@ -16,7 +16,7 @@ class BHTT_Controller {
       //   and STA_DATETIME >= to_date(:selectMonthYear,'dd/mm/rrrr')  and STA_DATETIME < to_date(:plainDate,'dd/mm/rrrr')
       //   and incentive_id ='104')`,
       // { selectMonthYear: selectMonthYear, plainDate: plainDate },
-      "select sl from local_tbtt_ptm_hourly  where rownum = 1 order by time desc",
+      "select * from (select sl  from bhtt_tbtt_ptm_hourly  order by time desc ) where rownum = 1",
       {},
       function (result) {
         console.log("result", result);
