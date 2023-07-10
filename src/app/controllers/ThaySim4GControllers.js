@@ -23,14 +23,14 @@ class ThaySim4GController {
             AND ISSUE_DATETIME >= TO_DATE(:selectMonthYear,'dd/mm/rrrr')
              AND DAT_DK = 'DU DK' AND shop_type IN ( :type)  ${
                text && text.length > 0
-                 ? "and isdn like :querySearch or lower(emp_code) like lower(:querySearch) or lower(emp_name) like lower(:querySearch) or lower(shop_code) like lower(:querySearch)"
+                 ? "and (isdn like :querySearch or lower(emp_code) like lower(:querySearch) or lower(emp_name) like lower(:querySearch) or lower(shop_code) like lower(:querySearch))"
                  : ""
              } offset :offsetbv rows fetch next :nrowsbv rows only`;
       const queryCount = `SELECT COUNT(*) FROM sale_owner.CP_THAYSIM4G WHERE THANG_TT = TO_DATE(:selectMonthYear,'dd/mm/rrrr') 
             AND ISSUE_DATETIME >= TO_DATE(:selectMonthYear,'dd/mm/rrrr')
              AND DAT_DK = 'DU DK' AND shop_type IN ( :type)   ${
                text && text.length > 0
-                 ? "and isdn like :querySearch  or lower(emp_code) like lower(:querySearch) or lower(emp_name) like lower(:querySearch) or lower(shop_code) like lower(:querySearch)"
+                 ? "(and isdn like :querySearch  or lower(emp_code) like lower(:querySearch) or lower(emp_name) like lower(:querySearch) or lower(shop_code) like lower(:querySearch))"
                  : ""
              }`;
       console.log("query", query);
